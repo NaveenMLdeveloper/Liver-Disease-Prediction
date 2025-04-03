@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Service - Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        input[type="submit"] {
+            background-color: #2980b9;
+            color: #ffffff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1c6ea4;
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="logo">
+            <img src="static/images/logo1.png" width="100" height="100" alt="MyBrand Logo">
+        </div>
+        <h1>Sign Up</h1>
+        <form id="signup-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your Name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your E-mail" required>
+
+            <div class="password-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+                <span class="password-toggle" onclick="togglePasswordVisibility('password')">
+                    <i class="fas fa-eye-slash" id="password-toggle"></i>
+                </span>
+            </div>
+
+            <div class="password-container">
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required>
+            </div>
+
+            <input type="submit" value="Sign Up">
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        document.getElementById("signup-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm-password").value;
+
+            if (password !== confirmPassword) {
+                var result = document.getElementById("result");
+                result.innerHTML = "Passwords do not match";
+                result.style.color = "red";
+                return;
+            }
+
+            var payload = {
+                "name": name,
+                "email": email,
+                "password": password
+            };
+
+            fetch("/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                var result = document.getElementById("result");
+                result.innerHTML = data.result;
+
+                if (data.result === "signup success") {
+                    result.style.color = "green";
+                    setTimeout(function () {
+                        window.location.href = "/";
+                    }, 3000);
+                } else {
+                    result.style.color = "red";
+                }
+            });
+        });
+
+        function togglePasswordVisibility() {
+            var passwordField = document.getElementById("password");
+            var confirmPasswordField = document.getElementById("confirm-password");
+            var passwordToggle = document.getElementById("password-toggle");
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                confirmPasswordField.type = "text";
+                passwordToggle.classList.remove("fa-eye-slash");
+                passwordToggle.classList.add("fa-eye");
+            } else {
+                passwordField.type = "password";
+                confirmPasswordField.type = "password";
+                passwordToggle.classList.remove("fa-eye");
+                passwordToggle.classList.add("fa-eye-slash");
+            }
+        }
+    </script>
+</body>
+</html>

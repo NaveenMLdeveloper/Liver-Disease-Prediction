@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+
+
+    /* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+}
+
+/* Header Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color:#2980b9;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    color: #61dafb;
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 8px 16px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Profile Icon Styling */
+.profile a {
+    font-size: 1.5rem;
+}
+
+.profile a:hover {
+    color: rgb(255, 255, 255);
+}
+
+
+
+/* Main Content Styling */
+.main-content {
+    padding: 50px 20px;
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    background-image: url(static/images/pixelcut-export.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.main-content h2 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.main-content p {
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.call-to-action {
+    margin-top: 30px;
+}
+
+.call-to-action button {
+    padding: 12px 25px;
+    background-color:#2980b9;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+/* Styles for TEST section */
+.TEST {
+    margin-top: 100px;
+    padding: 20px;
+    background-color:#2980b9;
+    border-radius: 10px;
+    text-align: center;
+
+}
+
+.TEST h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+    margin-right: 950px;
+}
+
+.TEST p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 20px;
+    margin-left: 90px;
+    text-align: initial;
+}
+
+.TEST button {
+    padding: 12px 25px;
+    background-color: #282c34;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s ease;
+    margin-left:5px;
+}
+
+.TEST button:hover {
+    background-color: #000000;
+    color: white;
+}
+
+
+/* Footer Styling */
+footer {
+    background-color: #282c34;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    .logo h1 {
+        font-size: 1.8rem;
+    }
+
+    nav ul {
+        justify-content: center;
+    }
+
+    nav ul li {
+        margin: 10px;
+    }
+
+    .main-content h2 {
+        font-size: 2rem;
+    }
+
+    .main-content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content h2 {
+        font-size: 1.7rem;
+    }
+
+    .main-content p {
+        font-size: 1rem;
+    }
+
+    .call-to-action button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+</style>
+<body>
+
+
+    
+
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="static/images/logo.jpeg" width="100" height="100" alt="MyBrand Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="/accuracy">Accuracy</a></li>
+                <!-- <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li> -->
+                <!-- Profile Icon -->
+                <li class="profile">
+                    <a href="#">
+                        <i class="fas fa-user-circle"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <section class="main-content">
+        <h2>MODERN HEALTH CARE</h2>
+        <p>A web-based application that uses machine learning to predict liver disease based on medical parameters such as age, gender, bilirubin levels, and enzyme levels</p>
+        <div class="call-to-action">
+        </div>
+        <section class="TEST">
+            <h1>Liver Disease Prediction System:</h1>
+            <p style="color:white"> It provides a user-friendly interface for manual data entry and delivers accurate health predictions, assisting in early diagnosis and better healthcare decisions.</p>
+            <button class="explore-button" onclick="redirectToLogin()">Explore </button>
+        </section>
+    </section>
+
+</body>
+<script type="text/javascript">
+    function redirectToLogin() {
+        window.location.href = "/renderlogin";
+    }
+
+
+</script>
+</html>
